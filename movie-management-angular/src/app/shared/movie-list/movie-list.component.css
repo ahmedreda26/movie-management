@@ -1,0 +1,6 @@
+.movie-card-hover {
+  transition: transform 0.2s;
+}
+.movie-card-hover:hover {
+  transform: translateY(-5px);
+}

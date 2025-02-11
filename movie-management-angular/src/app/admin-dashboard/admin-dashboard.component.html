@@ -1,0 +1,43 @@
+  <app-section-header
+    [username]="username"
+    [searchQuery]="searchQuery"
+    (search)="searchMovies($event)"
+    (backToMovies)="goBackToMovies()">
+  </app-section-header>
+
+  <div *ngIf="movies.length === 0" class="no-movies-container">
+      <app-no-movies-message message="No movies available in the admin panel. Please add some!"></app-no-movies-message>
+  </div>
+
+
+  <!-- Movie List -->
+  <div class="flex flex-wrap justify-content-center gap-2 " style="width: 100%;">
+    <div *ngFor="let movie of movies" class="m-2" >
+      <app-movie-list
+        [movie]="movie"
+        [isAdmin]="isAdmin"
+        (add)="addMovie($event)"
+        (delete)="deleteMovie($event)"
+      ></app-movie-list>
+    </div>
+  </div>
+
+  <div class="flex flex-wrap justify-content-center gap-2">
+    <p-button
+      label="Previous"
+      icon="pi pi-angle-left"
+      (onClick)="prevPage()"
+      [disabled]="currentPage === 0">
+    </p-button>
+
+    <p-button
+      label="Next"
+      icon="pi pi-angle-right"
+      (onClick)="nextPage()"
+      [disabled]="currentPage >= totalPages - 1">
+    </p-button>
+
+  </div>
+
+
+

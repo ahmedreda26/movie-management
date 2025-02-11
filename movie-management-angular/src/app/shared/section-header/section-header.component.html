@@ -1,0 +1,47 @@
+<div class="flex flex-column align-items-start mb-4 ml-4">
+
+  <div class="flex mb-0">
+    <h2 class="text-center mr-2">🎬 Movie Collection</h2>
+    <span class="hello-message flex align-items-center">
+      👋 Hello, {{ username }}!
+    </span>
+  </div>
+
+  <div class="flex gap-2 ">
+    <input
+      type="text"
+      [(ngModel)]="searchQuery"
+      pInputText
+      placeholder="Search for a movie..."
+      class="search-input"
+    />
+    <button
+      pButton
+      type="button"
+      label="Search"
+      icon="pi pi-search"
+      class="button-sm"
+      (click)="onSearch()"
+    ></button>
+
+    <button
+      pButton
+      type="button"
+      label="Back to My Movies"
+      icon="pi pi-arrow-left"
+      class="back-button"
+      (click)="onBackToMovies()"
+    ></button>
+
+    <button
+      pButton
+      type="button"
+      label="Logout"
+      icon="pi pi-sign-out"
+      class="logout-button"
+      (click)="logout()"
+    ></button>
+
+  </div>
+
+</div>

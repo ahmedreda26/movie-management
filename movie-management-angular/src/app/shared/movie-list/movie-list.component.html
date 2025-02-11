@@ -1,0 +1,60 @@
+<div
+  class="p-3 border-round shadow-3 movie-card-hover"
+  style="width: 350px; background-color: #e7e0e0;"
+>
+  <img
+    [src]="movie.poster"
+    [alt]="movie.title"
+    class="w-full border-round-top object-cover"
+    style="aspect-ratio: 2 / 3; object-fit: cover;"
+  />
+
+  <div class="flex flex-column gap-2 mt-2">
+    <div class="flex align-items-center justify-content-between">
+      <h2 class="text-xl font-bold m-0">{{ movie.title }}</h2>
+      <span class="text-sm text-500">{{ movie.year }}</span>
+    </div>
+
+    <div class="flex align-items-center justify-content-between">
+      <div class="flex align-items-center gap-1 text-yellow-500">
+        <i class="pi pi-star"></i>
+        <span *ngIf="movie.rating; else noRating" class="text-900">
+          {{ movie.rating }}/5
+        </span>
+        <ng-template #noRating>
+          <span class="text-900">Not rating yet</span>
+        </ng-template>
+      </div>
+      <span class="px-2 py-1 text-sm border-round bg-gray-200 text-900">
+        {{ movie.type }}
+      </span>
+    </div>
+
+    <div *ngIf="!isAdmin" class="flex align-items-center gap-4 mt-4">
+      <label class="font-bold" for="movieRating">Rate this movie:</label>
+      <p-rating
+        id="movieRating"
+        [(ngModel)]="movieRating"
+        [stars]="5"
+        [cancel]="false"
+        (onRate)="rateMovie()"
+      ></p-rating>
+      <span class="text-900">{{ movieRating || 0 }}/5</span>
+    </div>
+
+
+    <div *ngIf="isAdmin" class="flex gap-2 mt-2">
+      <button  class="p-button p-button-success p-button-sm" (click)="addMovie()">
+        <i class="pi pi-plus"></i>
+        <span>Add</span>
+      </button>
+      <button  class="p-button p-button-danger p-button-sm" (click)="deleteMovie()">
+        <i class="pi pi-trash"></i>
+        <span>Delete</span>
+      </button>
+    </div>
+
+  </div>
+</div>
+
+

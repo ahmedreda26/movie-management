@@ -1,0 +1,58 @@
+.movie-grid {
+  gap: 1rem; /* Adds space between cards */
+}
+
+.movie-card-container {
+  flex: 0 1 calc(25% - 1rem); /* 4 cards per row, adjusts based on screen size */
+  max-width: calc(25% - 1rem); /* Ensures cards don't stretch */
+}
+
+@media (max-width: 1024px) {
+  .movie-card-container {
+    flex: 0 1 calc(33.33% - 1rem); /* 3 cards per row for medium screens */
+    max-width: calc(33.33% - 1rem);
+  }
+}
+
+@media (max-width: 768px) {
+  .movie-card-container {
+    flex: 0 1 calc(50% - 1rem); /* 2 cards per row for small screens */
+    max-width: calc(50% - 1rem);
+  }
+}
+
+@media (max-width: 480px) {
+  .movie-card-container {
+    flex: 0 1 100%; /* 1 card per row for extra small screens */
+    max-width: 100%;
+  }
+}
+
+.no-movies-container {
+  display: flex;
+  justify-content: center; /* Horizontal centering */
+  align-items: center;    /* Vertical centering */
+  height: 100vh;          /* Full viewport height */
+  width: 100%;            /* Full width of the page */
+}
+
+/* Search input styles */
+.search-input {
+  width: 300px; /* Increase input width */
+  max-width: 100%; /* Ensure responsiveness */
+  padding: 8px;
+  font-size: 1rem;
+}
+
+.back-button {
+  font-size: 1rem;
+  background-color: #28a745;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.back-button:hover {
+  background-color: #218838;
+}

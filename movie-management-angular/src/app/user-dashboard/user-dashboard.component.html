@@ -1,0 +1,39 @@
+<app-section-header
+  [username]="username"
+  [searchQuery]="searchQuery"
+  (search)="searchMovies($event)"
+  (backToMovies)="goBackToMovies()">
+</app-section-header>
+
+
+  <div *ngIf="movies.length === 0" class="no-movies-container">
+    <app-no-movies-message message="No movies found. Stay tuned for updates!"></app-no-movies-message>
+  </div>
+
+  <div class="flex flex-wrap jc-center gap-2" style="width: 100%;">
+    <div *ngFor="let movie of movies" class="m-2" >
+      <app-movie-list
+        [movie]="movie"
+        [isAdmin]="isAdmin"
+        [movieRating]="movie.rating"
+        (rate)="rateMovie($event.movieId, $event.rating)"
+      ></app-movie-list>
+    </div>
+  </div>
+
+<div class="flex flex-wrap justify-content-center gap-2">
+  <p-button
+    label="Previous"
+    icon="pi pi-angle-left"
+    (onClick)="prevPage()"
+    [disabled]="currentPage === 0">
+  </p-button>
+
+  <p-button
+    label="Next"
+    icon="pi pi-angle-right"
+    (onClick)="nextPage()"
+    [disabled]="currentPage >= totalPages - 1">
+  </p-button>
+
+</div>
