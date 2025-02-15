@@ -18,8 +18,8 @@
     <div class="flex align-items-center justify-content-between">
       <div class="flex align-items-center gap-1 text-yellow-500">
         <i class="pi pi-star"></i>
-        <span *ngIf="movie.rating; else noRating" class="text-900">
-          {{ movie.rating }}/5
+        <span *ngIf="movie.averageRating; else noRating" class="text-900">
+          {{ movie.averageRating }}/5
         </span>
         <ng-template #noRating>
           <span class="text-900">Not rating yet</span>
