@@ -47,10 +47,10 @@ export class MovieService {
     });
   }
 
-  rateMovie( movieId: number, rating: number): Observable<any> {
+  rateMovie(userName:string,  movieId: number, rating: number): Observable<any> {
     return this.http.post(
       `${this.apiUrl}/rate`,
-      { movieId, rating },
+      {movieId, userName, rating },
       {
         ...this.getHeaders(),
         responseType: 'text' as 'json'
