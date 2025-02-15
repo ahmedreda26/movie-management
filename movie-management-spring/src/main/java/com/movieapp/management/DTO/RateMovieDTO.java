@@ -9,5 +9,6 @@ import lombok.*;
 @Setter
 public class RateMovieDTO {
     private Long movieId;
+    private String userName;
     private int rating;
 }

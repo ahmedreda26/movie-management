@@ -36,6 +36,12 @@ public class MovieController {
         return ResponseEntity.status(HttpStatus.CREATED).body(savedMovie);
     }
 
+    @PostMapping("/addBatch")
+    public ResponseEntity<?> addBatchMovies(@RequestBody List<Movie> movies) {
+        Map<String, Object> response = movieService.addBatchMovies(movies);
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+    }
+
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Map<String, String>> deleteMovie(@PathVariable Long id) {
         movieService.deleteMovie(id);
@@ -43,6 +49,21 @@ public class MovieController {
         response.put("message", "The movie was removed successfully.");
         return ResponseEntity.ok(response);
     }
+
+    @DeleteMapping("/deleteBatch")
+    public ResponseEntity<?> deleteBatchMovies(@RequestBody List<Long> movieIds) {
+        Map<String, Object> response = movieService.deleteBatchMovies(movieIds);
+        return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
+
+
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Movie> getMovieById(@PathVariable Long id) {
+        Movie movie = movieService.getMovieById(id);
+        return ResponseEntity.ok(movie);
+    }
+
 
     @GetMapping
     public Page<Movie> getAllMovies(@RequestParam(defaultValue = "0") int page,
@@ -60,7 +81,7 @@ public class MovieController {
     @PostMapping("/rate")
     public ResponseEntity<Map<String, String>> rateMovie(@RequestBody RateMovieDTO rateMovieDTO) {
         try {
-            String message =movieRatingService.rateMovie( rateMovieDTO.getMovieId(), rateMovieDTO.getRating());
+            String message =movieRatingService.rateMovie( rateMovieDTO.getMovieId(), rateMovieDTO.getUserName(), rateMovieDTO.getRating());
 
             return ResponseEntity.ok(Collections.singletonMap("message", message));
         } catch (Exception e) {

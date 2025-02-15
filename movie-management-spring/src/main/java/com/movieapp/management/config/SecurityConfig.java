@@ -36,7 +36,10 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/auth/**").permitAll() // Allow authentication endpoints
                         .requestMatchers(HttpMethod.POST, "/api/movies/add").hasAuthority("ROLE_ADMIN") // Restrict adding movies
+                        .requestMatchers(HttpMethod.POST, "/api/movies/addBatch").hasAuthority("ROLE_ADMIN") // Restrict batch adding to admin only
                         .requestMatchers(HttpMethod.DELETE, "/api/movies/delete/**").hasAuthority("ROLE_ADMIN") // Restrict deleting movies
+                        .requestMatchers(HttpMethod.DELETE, "/api/movies/deleteBatch").hasAuthority("ROLE_ADMIN")
+
                         .requestMatchers("/api/movies/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_USER") // Allow movie access to both roles
                         .anyRequest().authenticated() // Authenticate all other requests
                 )
