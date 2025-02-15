@@ -51,7 +51,8 @@ export class UserDashboardComponent {
   }
 
   rateMovie(movieId: number, rating: number) {
-    this.movieService.rateMovie( movieId, rating).subscribe({
+    const userName = this.authService.getUsername();
+    this.movieService.rateMovie(userName, movieId, rating).subscribe({
       next: (response) => {
         console.log('✅ Response received:', response);
         this.notificationService.success('Movie rated successfully!', 'Rating');
