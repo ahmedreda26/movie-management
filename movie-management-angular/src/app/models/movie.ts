@@ -5,5 +5,5 @@ export interface Movie {
   type: string;
   year: string;
   poster: string;
-  rating: number;
+  averageRating: number;
 }
