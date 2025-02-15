@@ -7,7 +7,7 @@ import {Movie} from "../../models/movie";
   styleUrls: ['./movie-list.component.css']
 })
 export class MovieListComponent {
-  @Input() movie: Movie ={rating: 0, imdbId: "", poster: "", title: "", type: "", year: ""};
+  @Input() movie: Movie ={averageRating: 0, imdbId: "", poster: "", title: "", type: "", year: ""};
   @Input() isAdmin: boolean = false;
   @Input() movieRating: number = 0;
 
